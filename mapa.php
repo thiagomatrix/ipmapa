@@ -13,14 +13,6 @@ isset($ip)?$ip = $ip :$ip = $_SERVER['REMOTE_ADDR'];
 
 $ip2 = $_SERVER['REMOTE_ADDR'];
 
-// Replace "city" with the appropriate method for your database, e.g.,
-// "country".
-
-
-
-//print($record->mostSpecificSubdivision->name . "\n"); // 'Minnesota'
-//print($record->mostSpecificSubdivision->isoCode . "\n"); // 'MN'
-
 try{
 
 $record = $reader->city($ip);
@@ -33,22 +25,26 @@ $ip=$ip2;
 
 }
 
-$CCode = $record->country->isoCode; // 'US'
-$CName = $record->country->names['pt-BR']; 
-$city = $record->city->name; // 'Minneapolis'
-$cep = $record->postal->code; // '55455'
+$CCode = $record->country->isoCode; // 'BR'
+$CName = $record->country->names['pt-BR'];  // Brasil
+$city = $record->city->name; // 'Rio de Janeiro'
+$cep = $record->postal->code; // '00000-000'
 $lat = $record->location->latitude; // 44.9733
 $long = $record->location->longitude; // -93.2323
 $hostname = gethostbyaddr($ip);
-//echo "Código do País: ".$CCode."<br>";
-//echo "País: ".$CName."<br>";
-//echo "Cidade: ".$city."<br>";
-//echo "CEP: ".$cep."<br>";
-//echo "Latitude: ".$lat."<br>";
-//echo "Longitude: ".$long."<br>";
+
+/*
+echo "<pre>";
+echo "Código do País: ".$CCode;
+echo "País: ".$CName;
+echo "Cidade: ".$city;
+echo "CEP: ".$cep;
+echo "Latitude: ".$lat;
+echo "Longitude: ".$long;
+echo "</pre>";
+*/
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -76,7 +72,7 @@ $hostname = gethostbyaddr($ip);
 <?php  
 
 /*
-//P01
+//Testa ip + porta
 
 $P01_label = $city;
 $P01 = $ip;
@@ -164,7 +160,7 @@ if($fp_01 >= 1){
       }
     </script>
   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB61T9rIphb-uq8qkB6_sRmo5LnYREMVZs&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=CHAVE_GOOGLEMAPS&callback=initMap">
     </script>
   </body>
 </html>
@@ -172,6 +168,8 @@ if($fp_01 >= 1){
 <?php 
 
 /*
+
+//Testa Ping IP
 
 function pingaMasNaoChove($ip){
      //$resultado = exec("/bin/ping -n 4 $ip", $rsp, $estado);
